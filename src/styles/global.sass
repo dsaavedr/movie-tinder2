@@ -1,0 +1,16 @@
+body
+    font-family: Helvetica, sans-serif
+    font-size: 14px
+    text-align: center
+    color: $mainWhite
+    background: $mainBackground
+    min-height: 100vh
+
+#root
+    min-height: 100vh
+
+@include hide("s", $bp-small)
+@include hide("md", $bp-medium)
+@include hide("l", $bp-large)
+@include hide("xl", $bp-xlarge)
+@include hide("xxl", $bp-xxlarge)
