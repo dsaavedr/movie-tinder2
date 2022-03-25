@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import Login from "./pages/Login";
 
+import "./styles/bootstrap-grid.min.css";
 import "./styles/index.sass";
 
 ReactDOM.render(
