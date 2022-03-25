@@ -1,0 +1,63 @@
+.login-form
+    color: $mainGray
+
+    .input-group
+        text-align: left
+
+        &:active, &:focus-within
+            label
+                color: $mainWhite
+
+        &:first-of-type
+            margin-bottom: 1rem
+
+        &:nth-last-of-type(2)
+            margin-bottom: 20px
+
+        &.extra-options
+            display: flex
+            justify-content: space-between
+            font-size: 0.7rem
+            gap: 2rem
+
+        label
+            display: block
+            color: $mainGray
+            font-size: 0.8rem
+            margin-bottom: 15px
+            transition: $mainTransition
+
+        input
+            transition: $quickTransition
+            border: 2px solid $mainGray
+            border-radius: 5px
+            padding: 0.5rem 0.5rem
+            background: none
+            width: 100%
+            color: $mainWhite
+
+            &:focus, &:active
+                border: 2px solid $primaryColor
+
+        .recover-password
+            transition: $quickTransition
+
+            &:hover
+                color: $mainWhite
+
+        &.google
+            button
+                background: none
+
+    button
+        background: $primaryColor
+        width: 100%
+        padding: 1rem
+        border-radius: 5px
+        cursor: pointer
+        color: $mainWhite
+        margin-top: 1rem
+        border: 1px solid $primaryColor
+
+        &[type="submit"]
+            margin-top: 3rem
