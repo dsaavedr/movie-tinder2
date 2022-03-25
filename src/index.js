@@ -4,7 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import App from "./App";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Error404 from "./pages/404";
 
 import "./styles/bootstrap-grid.min.css";
 import "./styles/index.sass";
@@ -13,7 +15,12 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<App />} />
+                {/* Authenticated routes */}
+                <Route path='/' element={<App />}>
+                    <Route path='/' element={<Home />} />
+                    <Route path='*' element={<Error404 />} />
+                </Route>
+                {/* Unauthenticated routes */}
                 <Route path='/login' element={<Login />} />
             </Routes>
         </BrowserRouter>
