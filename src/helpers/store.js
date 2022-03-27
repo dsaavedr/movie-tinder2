@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../reducers";
+import { createLogger } from "redux-logger";
+import usersReducer from "../reducers/users.reducer";
 
-export default configureStore({
+export const store = configureStore({
     reducer: {
-        counter: counterReducer
-    }
+        users: usersReducer
+    },
+    middleware: [createLogger()]
 });
