@@ -5,7 +5,10 @@ export class UserService {
         return axios
             .post("/users/authenticate", { username, password })
             .then(response => response.data)
-            .catch(err => console.error(err.toJSON()));
+            .catch(err => {
+                console.error(err.toJSON());
+                return Promise.reject(err);
+            });
     }
 
     logout() {
@@ -16,28 +19,40 @@ export class UserService {
         return axios
             .get("/users", { headers: authHeader() })
             .then(response => response.data)
-            .catch(err => console.error(err.toJSON()));
+            .catch(err => {
+                console.error(err.toJSON());
+                return Promise.reject(err);
+            });
     }
 
     getById(id) {
         return axios
             .get(`/users/${id}`, { headers: authHeader() })
             .then(response => response.data)
-            .catch(err => console.error(err.toJSON()));
+            .catch(err => {
+                console.error(err.toJSON());
+                return Promise.reject(err);
+            });
     }
 
     register(user) {
         return axios
             .post("/users/register", { user }, { headers: authHeader() })
             .then(response => response.data)
-            .catch(err => console.error(err.toJSON()));
+            .catch(err => {
+                console.error(err.toJSON());
+                return Promise.reject(err);
+            });
     }
 
     update(user) {
         return axios
             .put(`/users/${user.id}`, { user }, { headers: authHeader() })
             .then(response => response.data)
-            .catch(err => console.error(err.toJSON()));
+            .catch(err => {
+                console.error(err.toJSON());
+                return Promise.reject(err);
+            });
     }
 
     // prefixed function name with underscore because delete is a reserved word in javascript
@@ -45,6 +60,9 @@ export class UserService {
         return axios
             .delete(`/users/${id}`, { headers: authHeader() })
             .then(response => response.data)
-            .catch(err => console.error(err.toJSON()));
+            .catch(err => {
+                console.error(err.toJSON());
+                return Promise.reject(err);
+            });
     }
 }
