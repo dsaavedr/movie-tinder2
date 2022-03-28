@@ -4,16 +4,16 @@ import { UserService } from "../services";
 const userService = new UserService();
 
 export class UserController {
-    login(username, password) {
+    login(email, password) {
         return dispatch => {
-            dispatch(request({ username }));
+            dispatch(request({ email }));
 
-            userService.login(username, password).then(
+            userService.login(email, password).then(
                 user => {
                     dispatch(success(user));
                 },
                 err => {
-                    displatch(failure(err.toString()));
+                    dispatch(failure(err.toString()));
                     // dispatch(alertActions.error(error.toString()));
                 }
             );
