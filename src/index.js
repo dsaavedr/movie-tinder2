@@ -10,20 +10,24 @@ import Error404 from "./pages/404";
 
 import "./styles/bootstrap-grid.min.css";
 import "./styles/index.sass";
+import { Provider } from "react-redux";
+import { store } from "./helpers";
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                {/* Authenticated routes */}
-                <Route path='/' element={<App />}>
-                    <Route path='/' element={<Home />} />
-                    <Route path='*' element={<Error404 />} />
-                </Route>
-                {/* Unauthenticated routes */}
-                <Route path='/login' element={<Login />} />
-            </Routes>
-        </BrowserRouter>
+        <Provider store={store}>
+            <BrowserRouter>
+                <Routes>
+                    {/* Authenticated routes */}
+                    <Route path='/' element={<App />}>
+                        <Route path='/' element={<Home />} />
+                        <Route path='*' element={<Error404 />} />
+                    </Route>
+                    {/* Unauthenticated routes */}
+                    <Route path='/login' element={<Login />} />
+                </Routes>
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>,
     document.getElementById("root")
 );
