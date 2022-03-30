@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
 
 import usersReducer from "../reducers/users.reducer";
 import authReducer from "../reducers/auth.reducer";
@@ -11,5 +12,5 @@ export const store = configureStore({
         auth: authReducer,
         register: registerReducer
     },
-    middleware: [createLogger()]
+    middleware: [createLogger(), thunkMiddleware]
 });
