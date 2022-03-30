@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { UserController } from "../controllers";
@@ -8,6 +8,8 @@ const userController = new UserController();
 export default function LoginForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const loggingIn = useSelector(state => state.auth.loggingIn);
+    const user = useSelector(state => state.auth.user);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -20,8 +22,31 @@ export default function LoginForm() {
         dispatch(userController.login({ email, password }, () => navigate("/")));
     };
 
+    useEffect(() => {
+        //   Check for authentication
+        if (userController.isAuthenticated()) {
+            const redirect = window.confirm(
+                "Looks like you're already logged in. Would you like to logout? If not, you'll be redirected to the homepage."
+            );
+            if (redirect) {
+                dispatch(userController.logout());
+            } else {
+                navigate("/");
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        // auth failed
+        if (loading && !loggingIn && !user) {
+            setEmail("");
+            setPassword("");
+            setLoading(false);
+        }
+    }, [loggingIn]);
+
     return (
-        <div className='login-form'>
+        <div className='form'>
             <form onSubmit={handleSubmit}>
                 <div className='input-group'>
                     <label htmlFor='login-email'>Email</label>
