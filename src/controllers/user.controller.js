@@ -21,13 +21,13 @@ export class UserController {
             );
 
             function request(user) {
-                return { type: userConstants.LOGIN_REQUEST, user };
+                return { type: `authentication/${userConstants.LOGIN_REQUEST}`, user };
             }
             function success(user) {
-                return { type: userConstants.LOGIN_SUCCESS, user };
+                return { type: `authentication/${userConstants.LOGIN_SUCCESS}`, user };
             }
             function failure(error) {
-                return { type: userConstants.LOGIN_FAILURE, error };
+                return { type: `authentication/${userConstants.LOGIN_FAILURE}`, error };
             }
         };
     }
@@ -55,13 +55,13 @@ export class UserController {
         };
 
         function request(user) {
-            return { type: userConstants.REGISTER_REQUEST, user };
+            return { type: `register/${userConstants.REGISTER_REQUEST}`, user };
         }
         function success(user) {
-            return { type: userConstants.REGISTER_SUCCESS, user };
+            return { type: `register/${userConstants.REGISTER_SUCCESS}`, user };
         }
         function failure(error) {
-            return { type: userConstants.REGISTER_FAILURE, error };
+            return { type: `register/${userConstants.REGISTER_FAILURE}`, error };
         }
     }
 
@@ -76,13 +76,13 @@ export class UserController {
         };
 
         function request() {
-            return { type: userConstants.GETALL_REQUEST };
+            return { type: `users/${userConstants.GETALL_REQUEST}` };
         }
         function success(users) {
-            return { type: userConstants.GETALL_SUCCESS, users };
+            return { type: `users/${userConstants.GETALL_SUCCESS}`, users };
         }
         function failure(error) {
-            return { type: userConstants.GETALL_FAILURE, error };
+            return { type: `users/${userConstants.GETALL_FAILURE}`, error };
         }
     }
 
@@ -98,13 +98,17 @@ export class UserController {
         };
 
         function request(id) {
-            return { type: userConstants.DELETE_REQUEST, id };
+            return { type: `users/userConstants.DELETE_REQUEST`, id };
         }
         function success(id) {
-            return { type: userConstants.DELETE_SUCCESS, id };
+            return { type: `users/userConstants.DELETE_SUCCESS`, id };
         }
         function failure(id, error) {
-            return { type: userConstants.DELETE_FAILURE, id, error };
+            return { type: `users/userConstants.DELETE_FAILURE`, id, error };
         }
+    }
+
+    isAuthenticated() {
+        return localStorage.getItem("user") !== null;
     }
 }
