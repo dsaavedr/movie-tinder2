@@ -1,10 +1,15 @@
 import { axios, authHeader } from "../helpers";
 
 export class UserService {
-    login(username, password) {
+    login(email, password) {
         return axios
-            .post("/users/authenticate", { username, password })
-            .then(response => response.data)
+            .post("/users/authenticate", { email, password })
+            .then(response => {
+                const user = response.data;
+
+                localStorage.setItem("user", JSON.stringify(user));
+                return user;
+            })
             .catch(err => {
                 console.error(err.toJSON());
                 return Promise.reject(err);
@@ -37,7 +42,7 @@ export class UserService {
 
     register(user) {
         return axios
-            .post("/users/register", { user }, { headers: authHeader() })
+            .post("users/register", { user }, { headers: authHeader() })
             .then(response => response.data)
             .catch(err => {
                 console.error(err.toJSON());

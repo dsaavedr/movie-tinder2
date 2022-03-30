@@ -12,16 +12,12 @@ export const authSlice = createSlice({
             // doesn't actually mutate the state because it uses the immer library,
             // which detects changes to a "draft state" and produces a brand new
             // immutable state based off those changes
-            state = {
-                loggingIn: true,
-                user: action.user
-            };
+            state.loggingIn = true;
+            state.user = action.user;
         },
         [userConstants.LOGIN_SUCCESS]: (state, action) => {
-            state = {
-                loggedIn: true,
-                user: action.user
-            };
+            state.loggedIn = true;
+            state.user = action.user;
         },
         [userConstants.LOGIN_FAILURE]: (state, action) => {
             state = {};
