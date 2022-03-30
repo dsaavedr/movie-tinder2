@@ -33,7 +33,7 @@ export default function RegisterForm() {
     }, []);
 
     return (
-        <div className='login-form'>
+        <div className='form'>
             <form onSubmit={handleSubmit}>
                 <div className='input-group'>
                     <label htmlFor='register-first-name'>First Name</label>
