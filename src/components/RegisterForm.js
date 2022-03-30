@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { UserController } from "../controllers";
 const userController = new UserController();
 
 export default function RegisterForm() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const registering = useSelector(state => state.register.registering);
 
     const [firstName, setFirstName] = useState("");
@@ -19,7 +20,11 @@ export default function RegisterForm() {
         e.preventDefault();
 
         setSubmitted(true);
-        dispatch(userController.register({ firstName, lastName, email, password }));
+        dispatch(
+            userController.register({ firstName, lastName, email, password }, () =>
+                navigate("/login")
+            )
+        );
     };
 
     useEffect(() => {
@@ -31,23 +36,23 @@ export default function RegisterForm() {
         <div className='login-form'>
             <form onSubmit={handleSubmit}>
                 <div className='input-group'>
-                    <label htmlFor='register-name'>First Name</label>
+                    <label htmlFor='register-first-name'>First Name</label>
                     <input
                         type='text'
                         required
-                        name='register-name'
-                        id='register-name'
+                        name='register-first-name'
+                        id='register-first-name'
                         value={firstName}
                         onChange={e => setFirstName(e.target.value)}
                     />
                 </div>
                 <div className='input-group'>
-                    <label htmlFor='register-name'>Last Name</label>
+                    <label htmlFor='register-last-name'>Last Name</label>
                     <input
                         type='text'
                         required
-                        name='register-name'
-                        id='register-name'
+                        name='register-last-name'
+                        id='register-last-name'
                         value={lastName}
                         onChange={e => setLastName(e.target.value)}
                     />

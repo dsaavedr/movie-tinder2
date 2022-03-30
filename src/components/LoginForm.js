@@ -1,14 +1,28 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import { UserController } from "../controllers";
+const userController = new UserController();
 
 export default function LoginForm() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        setLoading(true);
+        dispatch(userController.login({ email, password }, () => navigate("/")));
+    };
+
     return (
         <div className='login-form'>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className='input-group'>
                     <label htmlFor='login-email'>Email</label>
                     <input
