@@ -4,13 +4,15 @@ import { UserService } from "../services";
 const userService = new UserService();
 
 export class UserController {
-    login(email, password) {
+    login(data, callback = null) {
+        const { email, password } = data;
         return dispatch => {
             dispatch(request({ email }));
 
             userService.login(email, password).then(
                 user => {
                     dispatch(success(user));
+                    if (callback && typeof callback === "function") callback();
                 },
                 err => {
                     dispatch(failure(err.toString()));
@@ -35,7 +37,7 @@ export class UserController {
         return { type: userConstants.LOGOUT };
     }
 
-    register(user) {
+    register(user, callback = null) {
         return dispatch => {
             dispatch(request(user));
 
@@ -43,6 +45,7 @@ export class UserController {
                 user => {
                     dispatch(success(user));
                     // dispatch(alertActions.success('Registration successful'));
+                    if (callback && typeof callback === "function") callback();
                 },
                 err => {
                     dispatch(failure(err.toString()));
