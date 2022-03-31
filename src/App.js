@@ -27,7 +27,7 @@ function App() {
 
     return (
         <>
-            {alert && alert.type && <Toast type={alert.type} message={alert.message} />}
+            {alert && alert.type && <Toast alert={alert} />}
             <BrowserRouter>
                 <Routes>
                     <Route path='*' element={<Error404 />} />
