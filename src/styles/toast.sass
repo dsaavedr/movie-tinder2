@@ -3,12 +3,14 @@
     right: 50px
     bottom: 50px
     border-radius: 10px
-    padding: 1.5em 2em
-    background: $lightGray
+    padding: 1.5em 2em 1.5em 0.5em
+    background: $mainWhite
     color: black
     display: flex
     align-items: center
     animation: alert 0.5s ease-out
+    border-left: 10px solid
+    font-size: 1rem
 
     @media screen and ( min-width: $bp-xlarge )
         right: calc(100vw - #{$bp-xlarge})
@@ -35,13 +37,19 @@
         font-size: 1.5em
 
 .toast-warning
-    background: rgba($alertOrange, 0.8)
+    color: $alertOrange
+    button.dismiss
+        border-color: $alertOrange
 
 .toast-success
-    background: rgba($alertGreen, 0.8)
+    color: $alertGreen
+    button.dismiss
+        border-color: $alertGreen
 
 .toast-error
-    background: rgba($alertRed, 0.8)
+    color: $alertRed
+    button.dismiss
+        border-color: $alertRed
 
 @keyframes alert
     0%
