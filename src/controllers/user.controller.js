@@ -1,7 +1,9 @@
 import { userConstants } from "../constants";
 import { UserService } from "../services";
+import { AlertController } from "./alert.controller";
 
 const userService = new UserService();
+const alertController = new AlertController();
 
 export class UserController {
     login(data, callback = null) {
@@ -16,7 +18,7 @@ export class UserController {
                 },
                 err => {
                     dispatch(failure(err.toString()));
-                    // dispatch(alertActions.error(error.toString()));
+                    dispatch(alertController.error(err.toString()));
                 }
             );
 
@@ -44,12 +46,12 @@ export class UserController {
             userService.register(user).then(
                 user => {
                     dispatch(success(user));
-                    // dispatch(alertActions.success('Registration successful'));
+                    dispatch(alertController.success("Registration successful"));
                     if (callback && typeof callback === "function") callback();
                 },
                 err => {
                     dispatch(failure(err.toString()));
-                    // dispatch(alertActions.error(error.toString()));
+                    dispatch(alertController.error(err.toString()));
                 }
             );
         };
