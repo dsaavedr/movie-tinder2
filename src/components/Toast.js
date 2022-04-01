@@ -7,7 +7,7 @@ const alertController = new AlertController();
 export default function Toast(props) {
     const dispatch = useDispatch();
 
-    const { type, message } = props;
+    const { type, message } = props.alert;
 
     const dismissAlert = () => {
         dispatch(alertController.clear());
