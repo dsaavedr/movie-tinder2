@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import PrivateRoute from "./components/PrivateRoute";
+import MainContent from "./components/MainContent";
 import Toast from "./components/Toast";
 
 import Home from "./pages/Home";
@@ -31,7 +31,8 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='*' element={<Error404 />} />
-                    <Route exact path='/' element={<PrivateRoute />}>
+                    {/* MainContent does auth check */}
+                    <Route exact path='/' element={<MainContent />}>
                         <Route exact path='/' element={<Home />} />
                     </Route>
                     <Route path='/login' element={<Login />} />
