@@ -13,10 +13,10 @@ export const registrationSlice = createSlice({
             state.registering = true;
         },
         [userConstants.REGISTER_SUCCESS]: (state, action) => {
-            state = {};
+            state.registering = false;
         },
         [userConstants.REGISTER_FAILURE]: (state, action) => {
-            state = {};
+            state.registering = false;
         },
         [userConstants.LOGOUT]: (state, action) => {
             state = {};
