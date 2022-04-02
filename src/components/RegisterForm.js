@@ -30,7 +30,7 @@ export default function RegisterForm() {
     const cleanInputs = () => {
         setEmail("");
         setPassword("");
-        setLoading(false);
+        setSubmitted(false);
     };
 
     useEffect(() => {
