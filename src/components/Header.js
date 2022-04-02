@@ -1,8 +1,19 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { UserController } from "../controllers";
+
+const userController = new UserController();
+
 export default function Header() {
+    const dispatch = useDispatch();
+
     const logo = null || "Logo";
+
+    const logout = () => {
+        dispatch(userController.logout());
+    };
 
     return (
         <nav className='menu'>
@@ -20,7 +31,9 @@ export default function Header() {
             <ul>
                 <li className='menu__item'>Item 1</li>
                 <li className='menu__item'>
-                    <Link to='login'>Login</Link>
+                    <a href='#' onClick={logout}>
+                        Logout
+                    </a>
                 </li>
             </ul>
         </nav>
