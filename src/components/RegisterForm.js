@@ -27,10 +27,32 @@ export default function RegisterForm() {
         );
     };
 
+    const cleanInputs = () => {
+        setEmail("");
+        setPassword("");
+        setLoading(false);
+    };
+
     useEffect(() => {
-        //   Reset login status
-        dispatch(userController.logout());
+        // Reset login status
+        if (userController.isAuthenticated()) {
+            const redirect = window.confirm(
+                "Looks like you're already logged in. Would you like to logout? If not, you'll be redirected to the homepage."
+            );
+            if (redirect) {
+                dispatch(userController.logout());
+            } else {
+                navigate("/");
+            }
+        }
     }, []);
+
+    useEffect(() => {
+        // Register failed
+        if (submitted && registering) {
+            cleanInputs();
+        }
+    }, [registering]);
 
     return (
         <div className='form'>
