@@ -1,0 +1,33 @@
+.menu
+    display: flex
+    justify-content: space-between
+    padding: 2rem 0
+    max-width: 1200px
+    margin: 0 auto
+
+    @media (max-width: calc($bp-xlarge + 100px))
+        padding: 2rem 3rem
+
+    ul
+        display: flex
+        flex: 1
+        gap: 4rem
+        justify-content: start
+        align-items: center
+
+        margin: 0
+        padding: 0
+
+        list-style-type: none
+
+        &:nth-of-type(2)
+            justify-content: end
+
+    .logo
+        margin: 0 4rem
+        font-size: 2rem
+        font-weight: 700
+        color: $primaryColor
+
+    a
+        color: inherit
