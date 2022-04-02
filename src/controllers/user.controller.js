@@ -36,7 +36,7 @@ export class UserController {
 
     logout() {
         userService.logout();
-        return { type: userConstants.LOGOUT };
+        return { type: `authentication/${userConstants.LOGOUT}` };
     }
 
     register(user, callback = null) {
