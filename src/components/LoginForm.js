@@ -22,6 +22,12 @@ export default function LoginForm() {
         dispatch(userController.login({ email, password }, () => navigate("/")));
     };
 
+    const cleanInputs = () => {
+        setEmail("");
+        setPassword("");
+        setLoading(false);
+    };
+
     useEffect(() => {
         //   Check for authentication
         if (userController.isAuthenticated()) {
@@ -39,9 +45,7 @@ export default function LoginForm() {
     useEffect(() => {
         // auth failed
         if (loading && !loggingIn && !user) {
-            setEmail("");
-            setPassword("");
-            setLoading(false);
+            cleanInputs();
         }
     }, [loggingIn]);
 
