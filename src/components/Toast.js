@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AlertController } from "../controllers";
 
@@ -13,12 +13,18 @@ export default function Toast(props) {
         dispatch(alertController.clear());
     };
 
+    useEffect(() => {
+        setTimeout(dismissAlert, 4000);
+    }, []);
+
+    const icon = type === "success" ? "✔" : type === "warning" ? "⚡" : "❗";
+
     return (
         <div className={`toast toast-${type || "success"}`}>
             <button className='dismiss' onClick={dismissAlert}>
                 &times;
             </button>
-            <div className='icon'>🍁</div>
+            <div className='icon'>{icon}</div>
             <div className='type'>{type}</div>
             <div className='message'>{message}</div>
         </div>
